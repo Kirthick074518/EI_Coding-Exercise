@@ -1,0 +1,35 @@
+#!/usr/bin/env sh
+# Apache Maven Wrapper - Unix
+BASE_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+WRAPPER_JAR="$BASE_DIR/.mvn/wrapper/maven-wrapper.jar"
+WRAPPER_PROPS="$BASE_DIR/.mvn/wrapper/maven-wrapper.properties"
+
+# Find Java
+if [ -n "$JAVA_HOME" ] ; then
+  JAVA_EXE="$JAVA_HOME/bin/java"
+else
+  JAVA_EXE="java"
+fi
+
+command -v "$JAVA_EXE" >/dev/null 2>&1 || { echo "Java not found. Please install JDK 17+ or set JAVA_HOME." >&2; exit 1; }
+
+# Download wrapper jar if missing
+if [ ! -f "$WRAPPER_JAR" ]; then
+  WRAPPER_URL=$(grep -E '^wrapperUrl=' "$WRAPPER_PROPS" | sed -e 's/wrapperUrl=//')
+  if [ -z "$WRAPPER_URL" ]; then
+    WRAPPER_URL="https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/3.2.0/maven-wrapper-3.2.0.jar"
+  fi
+  echo "Downloading Maven Wrapper from $WRAPPER_URL"
+  mkdir -p "$(dirname "$WRAPPER_JAR")"
+  if command -v curl >/dev/null 2>&1; then
+    curl -fsSL "$WRAPPER_URL" -o "$WRAPPER_JAR" || { echo "Failed to download Maven Wrapper JAR." >&2; exit 1; }
+  elif command -v wget >/dev/null 2>&1; then
+    wget -q "$WRAPPER_URL" -O "$WRAPPER_JAR" || { echo "Failed to download Maven Wrapper JAR." >&2; exit 1; }
+  else
+    echo "Neither curl nor wget is available to download $WRAPPER_URL" >&2
+    exit 1
+  fi
+fi
+
+MAVEN_WRAPPER_MAIN=org.apache.maven.wrapper.MavenWrapperMain
+exec "$JAVA_EXE" -Dmaven.multiModuleProjectDirectory="$BASE_DIR" -cp "$WRAPPER_JAR" "$MAVEN_WRAPPER_MAIN" "$@"
