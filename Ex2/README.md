@@ -259,13 +259,22 @@ astro> exit
 
 ```mermaid
 graph TD
-  U[User] -->|commands| R[CommandRouter]
-  R --> M[ScheduleManager (Singleton)]
-  R --> F[TaskFactory]
-  F --> T[Task]
-  M -->|events| O1[ConsoleObserver]
-  M -->|events| O2[LoggingObserver]
-  M --> S[(In-memory Store)]
+  U[User]
+  R[CommandRouter]
+  M["ScheduleManager (Singleton)"]
+  F[TaskFactory]
+  T[Task]
+  O1[ConsoleObserver]
+  O2[LoggingObserver]
+  S[In-memory Store]
+
+  U -->|commands| R
+  R --> M
+  R --> F
+  F --> T
+  M -->|events| O1
+  M -->|events| O2
+  M --> S
 ```
 
 ## Flows (sequence diagrams)
