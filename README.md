@@ -164,7 +164,7 @@ A clean, console-based Java 17 application that helps astronauts organize their 
 - Observer — observers notified on add/remove/update/complete/conflict events
 
 ### Location
-- Directory: `astronaut-schedule-console/`
+- Directory: `Ex2/`
 
 ### How to Run
 1) Build (Maven Wrapper included; Maven install not required)
@@ -243,7 +243,7 @@ Times use 24-hr `HH:mm` format.
 - Performance: O(n) conflict scan acceptable for daily schedule; sortable views
 - Extensibility: persistence, dates, recurrence, IDs, import/export
 
-For the full detailed documentation, see `astronaut-schedule-console/README.md`.
+For the full detailed documentation, see `Ex2/README.md`.
 
 ---
 
