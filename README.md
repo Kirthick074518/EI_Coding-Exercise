@@ -5,6 +5,8 @@ This repository contains multiple Java projects developed under the same parent 
 - Ex1 — Design Patterns (pure Java source with per-pattern mains)
 - Astronaut Daily Schedule Organizer — Console app using Maven Wrapper
 
+I have also done the Ex1 (Design-Patterns-Console) using MavenWrapper you can look into that : https://github.com/Kirthick074518/Design-Patterns-Console-MavenWrapper.git
+
 ---
 
 ## Ex1 — Design Patterns
