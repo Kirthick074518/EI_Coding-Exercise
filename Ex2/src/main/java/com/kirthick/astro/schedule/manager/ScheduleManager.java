@@ -130,6 +130,8 @@ public final class ScheduleManager {
         for (Map.Entry<String, Task> e : new ArrayList<>(tasks.entrySet())) {
             if (ignoreKey != null && e.getKey().equals(ignoreKey)) continue;
             Task existing = e.getValue();
+            // Completed tasks do not block new scheduling
+            if (existing.isCompleted()) continue;
             if (overlaps(candidate, existing)) return existing;
         }
         return null;
